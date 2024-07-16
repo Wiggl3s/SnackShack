@@ -1,13 +1,18 @@
-<?php
-$dbHost = 'localhost';
-$ManagerName = 'root'; 
-$Password = 'password'; 
-$dbName = 'snackshack'; 
-
-$conn = new mysqli($dbHost, $ManagerName, $password, $dbName);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
+<?php 
+    $db_server = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "snackshack";
     
+
+
+    try{
+        $conn = mysqli_connect($db_server, 
+                                $db_user, 
+                                $db_pass, 
+                                $db_name);
+                               
+    }catch(mysqli_sql_exception){
+    }
+
+?>

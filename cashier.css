@@ -209,7 +209,7 @@ body {
 
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 50px  1fr;
+    grid-template-rows: 50px 150px 1fr;
 
     padding: 40px 20px;
 }
@@ -283,16 +283,11 @@ body {
     display: block;
 }
 
-
-
 /* table */
 .box-content .data__table {
     background-color: #ffff;
     border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
     padding: 40px;
-    justify-content: space-around;
 
 }
 
@@ -325,30 +320,6 @@ body {
     margin-right: 5px;
 }
 
-/* Card styling */
-.data__table .card {
-    background-color: #fff; /* Card background */
-    border: 1px solid #ccc; /* Card border */
-    border-radius: 5px; /* Card border radius */
-    padding: 20px; /* Card padding */
-    margin: 10px; /* Space between cards */
-    width: calc(33.333% - 20px); /* Example for 3 cards per row, adjust as needed */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional: Adds shadow for depth */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .data__table .card {
-        width: calc(50% - 20px); /* Adjusts to 2 cards per row on smaller screens */
-    }
-}
-
-@media (max-width: 480px) {
-    .data__table .card {
-        width: 100%; /* Adjusts to 1 card per row on very small screens */
-    }
-}
-
 .search-box input::placeholder {
     color: var(--clr-secondary);
 }
@@ -369,9 +340,7 @@ body {
     padding: 10px 10px;
 }
 
-.table_custm tbody tr:nth-child(even) {
-    background-color: var(--clr-secondary);
-}
+
 
 .table_custm .opt-cell a {
     text-decoration: none;
@@ -381,48 +350,19 @@ body {
     font-size: 24px;
 }
 
-/* General form styling */
-.form-group {
-    margin-bottom: 20px;
+.food-card {
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="number"],
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Styling for the submit button */
-.submit-btn {
-    background-color: var(--clr-secondary); 
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-}
-
-.submit-btn:hover {
-    background-color: var(--clr-primary);
+.food-card img {
+    margin: 10px;
+    /* adjust as needed */
 }
 
 
-
-h3 {
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
 .overlay {
     display: flex;
     justify-content: space-between;

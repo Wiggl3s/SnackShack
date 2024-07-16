@@ -1,9 +1,9 @@
 <?php
 session_start();
-if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'general manager') {
-    header("Location: login.php");
-    exit();
-}
+include 'dbManager.php';
+
+$query = "SELECT * FROM manager";
+$result = mysqli_query($conn, $query);
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'general manager')
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="index.css" type="text/css" />
+    <link rel="stylesheet" href="TeamManagement.css" type="text/css" />
 </head>
 
 <body>
@@ -34,8 +34,8 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'general manager')
                 <li>
                     <a href="finance.php"><i class="bx bxs-credit-card-front"></i><span>Finance Management</span></a>
                 </li>
-                
-                
+
+
             </ul>
         </nav>
     </div>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'general manager')
                     </summary>
                     <ul class="dropdown-list">
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="login.php">Register</a></li>
+
                     </ul>
                 </details>
             </div>
@@ -119,18 +119,25 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'general manager')
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>090909909</td>
-                            <td class="opt-cell">
-                                <a href=""><i class='bx bx-show-alt'></i></a>
-                                <a href=""><i class='bx bxs-edit'></i></a>
-                            </td>
-                            </td>
-                        </tr>
+                        <?php
+
+                        if (mysqli_num_rows($result) > 0) {
+
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row["ManagerID"] . "</td>";
+                                echo "<td>" . $row["ManagerName"] . "</td>";
+                                echo "<td>" . $row["Role"] . "</td>";
+                                echo "<td>" . $row["HireDate"] . "</td>";
+                                echo "<td>" . $row["ContactNumber"] . "</td>";
+                                echo "<td class='opt-cell'><a href=''><i class='bx bx-show-alt'></i></a><a href=''><i class='bx bxs-edit'></i></a></td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6'>No results found</td></tr>";
+                        }
+
+                        ?>
                     </tbody>
                 </table>
 

@@ -1,10 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'cashier') {
-    header("Location: login.php");
-    exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +9,7 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'cashier') {
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="index.css" type="text/css" />
+    <link rel="stylesheet" href="cashier.css" type="text/css" />
 </head>
 
 <body>
@@ -27,7 +20,14 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'cashier') {
                 <li>
                     <a href="cashier.php"><i class="bx bx-store"></i><span>Cashier Management</span></a>
                 </li>
-               
+                <li>
+                    <a href="TeamManagement.php"><i class="bx bxs-group"></i><span>Staff Management</span></a>
+                </li>
+                <li>
+                    <a href="finance.php"><i class="bx bxs-credit-card-front"></i><span>Finance Management</span></a>
+                </li>
+
+
             </ul>
         </nav>
     </div>
@@ -48,7 +48,7 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'cashier') {
                     </summary>
                     <ul class="dropdown-list">
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="login.php">Register</a></li>
+
                     </ul>
                 </details>
             </div>
@@ -99,30 +99,48 @@ if (!isset($_SESSION['ManagerName']) || $_SESSION['Role'] !== 'cashier') {
                         <i class='bx bx-search-alt'></i>
                     </div>
                 </div>
+                <?php
+
+                include 'dbManager.php';
+
+                $sql = "SELECT CustomerID, CustomerName,  ContactNumber, Email, Address FROM customer";
+                ?>
 
                 <table class="table_custm">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Customer</th>
-                            <th>Ordered Snack</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>Address</th>
                             <th>Amount</th>
-                            <th>Date Order</th>
-                            <th>Contact No.</th>
+                            <th>Ordered Food</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>08/07/2024</td>
-                            <td>090909099</td>
-
-                        </tr>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["CustomerID"] . "</td>";
+                                echo "<td>" . $row["CustomerName"] . "</td>";
+                                echo "<td>" . $row["ContactNumber"] . "</td>";
+                                echo "<td>" . $row["Email"] . "</td>";
+                                echo "<td>" . $row["Address"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6'>No results found</td></tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
+
+                <?php
+                $conn->close();
+                ?>
 
             </div>
 

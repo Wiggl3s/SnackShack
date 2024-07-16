@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +9,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 
     <!-- styles -->
-    <link rel="stylesheet" href="index.css" type="text/css" />
+    <link rel="stylesheet" href="finance.css" type="text/css" />
 </head>
 
 <body>
@@ -25,9 +23,7 @@
                 <li>
                     <a href="TeamManagement.php"><i class="bx bxs-group"></i><span>Staff Management</span></a>
                 </li>
-                <li>
-                    <a href="menu.php"><i class='bx bx-food-menu'></i></i><span>Menu</span></a>
-                </li>
+
                 <li>
                     <a href="finance.php"><i class="bx bxs-credit-card-front"></i><span>Finance Management</span></a>
                 </li>
@@ -51,7 +47,7 @@
                     </summary>
                     <ul class="dropdown-list">
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="login.php">Register</a></li>
+
                     </ul>
                 </details>
             </div>
@@ -94,6 +90,14 @@
 
             </div>
 
+            <?php
+
+            include 'dbManager.php';
+
+            $sql = "SELECT EmployeeID, EmployeeName,  EmployeeType, Email, HireDate  FROM employee";
+            $result = $conn->query($sql);
+            ?>
+
             <div class="data__table">
                 <div class="table-header">
 
@@ -107,21 +111,32 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Staff Name</th>
+                            <th>Name</th>
                             <th>Role</th>
                             <th>Hire Date</th>
+                            <th>Email</th>
                             <th>Salary</th>
+                            <th>Payment Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>.....</td>
-                            <td>20,000</td>
+                        <?php
+                        if ($result->num_rows > 0) {
 
-                        </tr>
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . $row["EmployeeID"] . "</td>";
+                                echo "<td>" . $row["EmployeeName"] . "</td>";
+                                echo "<td>" . $row["EmployeeType"] . "</td>";
+                                echo "<td>" . $row["HireDate"] . "</td>";
+                                echo "<td>" . $row["Email"] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        $conn->close();
+                        ?>
                     </tbody>
                 </table>
 

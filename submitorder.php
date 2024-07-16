@@ -48,6 +48,8 @@ session_start();
             <span class="username-text">
                 <?php
                 
+            
+                
                 echo isset($_SESSION['CustomerName']) ? $_SESSION['CustomerName'] : 'Unknown';
                 ?>
             </span>
@@ -59,7 +61,7 @@ session_start();
                 <li><a href="logout.php">Logout</a></li>
             <?php else: ?>
                 <li><a href="login.php">Login</a></li>
-  
+                <li><a href="register.php">Register</a></li>
             <?php endif; ?>
         </ul>
     </details>
@@ -71,56 +73,15 @@ session_start();
         <div class="box-content">
     <div class="head-content">
         <i class="bx bx-store"></i>
-        <h1>Order</h1>  
+        <h1>Order</h1> 
+        
     </div>
-    <form action="submitorder.php" method="post">
-    <h2>Create Your Order</h2>
-    <div class="form-group">
-    <label for="starter-item">Select Starter:</label>
-    <select name="starter_item" id="starter-item">
-        <option value="fries">Parmesan Fries</option>
-        <option value="nachos">Loaded Nachos</option>
-        <option value="nachos">Boneless Wings</option>
-       
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="burger-item">Select Burger:</label>
-    <select name="burger_item" id="burger-item">
-        <option value="cheeseburger">Classic Cheeseburger</option>
-        <option value="veggieburger">Shack Burger</option>
-        <option value="veggieburger">Bacon Burger</option>
-        
-    </select>
-</div>
-
-<div class="form-group">
-     <label for="drink-item">Select Drink:</label>
-    <select name="drink_item" id="drink-item">
-        <option value="sprite">Sprite</option>
-        <option value="coke">Coke</option>
-        <option value="fanta">Fanta</option>
-        
+    <h1>Order Placed</h1>
     
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" min="1" value="1">
-</div>
-<!-- Payment Section -->
-<h3>Payment Information</h3>
-<div class="form-group">
-    <label for="payment-amount">Amount:</label>
-    <input type="text" id="payment-amount" name="payment_amount" placeholder="Enter your payment amount">
-</div>
 
 
-<!-- Additional form elements or payment details go here -->
 
-<button type="submit" class="submit-btn">Place Order</button>
+
 </form>
 </div>
         

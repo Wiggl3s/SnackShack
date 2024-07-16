@@ -45,14 +45,26 @@
                 <details class="user__dropdown">
                     <summary class="user_icon">
                         <i class="bx bxs-user"></i>
-                        <span class="username-text">Unknown</span>
+                        <span class="username-text">
+                        <?php
+                        if (session_status() == PHP_SESSION_NONE) {
+                            session_start();
+                        }
+                
+                echo isset($_SESSION['CustomerName']) ? $_SESSION['CustomerName'] : 'Unknown';
+                ?>
+                        </span>
                         <i class='bx bxs-down-arrow'></i>
                     </summary>
                     <ul class="dropdown-list">
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="login.php">Register</a></li>
-                    </ul>
-                </details>
+                    <?php if(isset($_SESSION['CustomerName'])): ?>
+                        <li><a href="logout.php">Logout</a></li>
+            <?php else: ?>
+                <li><a href="login.php">Login</a></li>
+                <li><a href="register.php">Register</a></li>
+            <?php endif; ?>
+        </ul>
+        </details>
             </div>
         </div>
     
