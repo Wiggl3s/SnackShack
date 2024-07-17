@@ -1,3 +1,10 @@
+
+<?php
+
+include 'dbManager.php';
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +68,7 @@
             </div>
 
             <div class="cards data__cards">
-
+    
                 <div class="d-card card__orders">
                     <div class="v-line"></div>
                     <i class='bx bx-basket'></i>
@@ -103,7 +110,9 @@
 
                 include 'dbManager.php';
 
-                $sql = "SELECT CustomerID, CustomerName,  ContactNumber, Email, Address FROM customer";
+                
+                $sql = "SELECT CustomerID, CustomerName, ContactNumber, Email, Address FROM customer";
+$result = $conn->query($sql);
                 ?>
 
                 <table class="table_custm">
